@@ -1,0 +1,58 @@
+.content-section {
+  position: relative;
+  margin-top: -75px;
+  padding-top: 75px;
+  z-index: 2;
+
+  @media (min-width: 1280px) {
+    padding-right: 25vw;
+  }
+
+  .content-main {
+    min-height: 150vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-aside {
+    transform: translateZ(0);
+    background: #f9f9f9;
+    position: absolute;
+    overflow: hidden;
+    top: 75px;
+    padding-bottom: 75px;
+    right: 0;
+    width: 25vw;
+    height: 100vh;
+    transition: width 120ms;
+
+    &.layout-in {
+      position: fixed;
+      top: 75px;
+    }
+
+    &.layout-under {
+      padding-bottom: 0px;
+      top: auto;
+      height: calc(100vh - 75px);
+      bottom: 0;
+    }
+
+    .content-aside-scroll {
+      position: relative;
+      overflow: auto;
+    }
+
+    .content-aside-scroll div {
+      height: 80px;
+      margin: 10px;
+      background: #5599f0;
+    }
+  }
+}
+
+.content-aside div {
+  height: 200px;
+  margin: 20px;
+  background: rgba(black, 0.1);
+}

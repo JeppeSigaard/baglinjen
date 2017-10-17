@@ -1,0 +1,79 @@
+@keyframes fromRight {
+  from {
+    right: -134px;
+  }
+  to {
+    right: 0px;
+  }
+}
+
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  .video-wrapper-overlay {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  iframe {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.video-wrapper.position-hidden {
+  position: fixed;
+  height: 0px;
+  width: 0px;
+  z-index: -1;
+}
+
+.video-wrapper.position-relative {
+  position: relative;
+  height: 0px;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.video-wrapper.position-fixed {
+  position: fixed;
+  right: -134px;
+  top: 0;
+  height: 75px;
+  width: 134px;
+  padding-bottom: 0;
+  z-index: 100;
+  animation: fromRight 1 forwards 200ms;
+}
+
+.video-wrapper.position-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100000;
+}
+
+.test-controls {
+  position: absolute;
+  background: white;
+  padding: 10px;
+  z-index: 1000000;
+
+  div {
+    margin: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    cursor: pointer;
+  }
+}

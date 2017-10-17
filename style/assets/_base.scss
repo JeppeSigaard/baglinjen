@@ -1,0 +1,19 @@
+body {
+  font-family: $base-font;
+  font-weight: 300;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  color: #454545;
+
+  * {
+    box-sizing: inherit;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+strong {
+  font-weight: bold;
+}

@@ -1,0 +1,35 @@
+%fill-all{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+%no-margin{
+    margin:0;
+}
+
+%article-font-style{
+    line-height:$base-line-height;
+
+}
+
+%font-size{
+    font-size:$base-font-size;
+    transition:font-size .2s;
+    @media only screen and(min-width:480px){font-size:$base-font-size-480;}
+    @media only screen and(min-width:640px){font-size:$base-font-size-640;}
+    @media only screen and(min-width:768px){font-size:$base-font-size-768;}
+    @media only screen and(min-width:960px){font-size:$base-font-size-960;}
+}
+
+%fill-bg{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+%base-font{
+    font-family: $base-font;
+}
