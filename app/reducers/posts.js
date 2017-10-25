@@ -4,8 +4,28 @@ export default function(state = [], action) {
       return state;
       break;
 
+    case "FETCHING_SPONSORS":
+      return state;
+      break;
+
+    case "FETCHED_SPONSORS":
+      const filtered_sponsors = action.data.filter(item => {
+        if (state.find(post => post.id === item.id) !== undefined) return false;
+        item.fetched = true;
+        return true;
+      });
+
+      return state.concat(filtered_sponsors);
+      break;
+
     case "FETCHED_POSTS":
-      return state.concat(action.data.filter(item => state.indexOf(item) < 0));
+      const filtered_posts = action.data.filter(item => {
+        if (state.find(post => post.id === item.id) !== undefined) return false;
+        item.fetched = true;
+        return true;
+      });
+
+      return state.concat(filtered_posts);
       break;
 
     case "FETCHING_POST":

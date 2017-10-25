@@ -13,6 +13,18 @@ export function setVideoState(playState) {
   };
 }
 
+export function changeVideo(id = false, parent = false) {
+  return (dispatch, getState) => {
+    if (!id || !parent) return;
+    const state = getState(),
+      parsedId = parseLink(id);
+
+    if (parsedId !== state.video.videoId) {
+      dispatch({ type: "SET_VIDEO_ID", data: { id: parsedId, parent } });
+    }
+  };
+}
+
 export function playVideo(id = null, parent = null) {
   return (dispatch, getState) => {
     if (id !== null) {
@@ -20,7 +32,7 @@ export function playVideo(id = null, parent = null) {
         parsedId = parseLink(id);
 
       if (parsedId !== state.video.videoId) {
-        dispatch({ type: "SET_VIDEO_ID", data: { parsedId, parent } });
+        dispatch({ type: "SET_VIDEO_ID", data: { id: parsedId, parent } });
       }
     }
 
@@ -35,7 +47,7 @@ export function pauseVideo(id = null, parent = null) {
         parsedId = parseLink(id);
 
       if (parsedId !== state.video.videoId) {
-        dispatch({ type: "SET_VIDEO_ID", data: { parsedId, parent } });
+        dispatch({ type: "SET_VIDEO_ID", data: { id: parsedId, parent } });
       }
     }
 
@@ -43,18 +55,19 @@ export function pauseVideo(id = null, parent = null) {
   };
 }
 
-export function changeVideoPosition(visualState = "hidden") {
+export function changeVideoPosition(position = "hidden") {
   return {
     type: "SET_VIDEO_VISUAL_STATE",
-    data: { visualState }
+    data: { visualState: position }
   };
 }
 
 export function destroyVideo() {
   return (dispatch, getState) => {
-    dispatch("SET_VIDEO_VISUAL_STATE", { visualState: "hidden" });
-    dispatch("SET_VIDEO_STATUS", { status: -1 });
-    dispatch("SET_VIDEO_ID", { id: null });
-    dispatch("SET_VIDEO_INTENT", { intent: "pause" });
+    dispatch({
+      type: "SET_VIDEO_VISUAL_STATE",
+      data: { visualState: "hidden" }
+    });
+    dispatch({ type: "SET_VIDEO_INTENT", data: { intent: "stop" } });
   };
 }

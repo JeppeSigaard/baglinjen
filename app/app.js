@@ -13,11 +13,17 @@ import createBrowserHistory from "history/createBrowserHistory";
 import { Router, Route } from "react-router-dom";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 
+/* ----------------------------------------- */
+import Lazyload from "./modules/lazyload";
+const lazyload = new Lazyload();
+
 const history = createBrowserHistory();
 
-history.listen(() => {
+history.listen((state, action) => {
+  if (action !== "PUSH") return;
   setTimeout(() => {
     window.scrollTo(0, 0);
+    lazyload.scrollEvent();
   });
 });
 

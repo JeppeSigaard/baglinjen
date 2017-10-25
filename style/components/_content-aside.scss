@@ -1,0 +1,31 @@
+@media (min-width: 1280px) {
+  .content-aside {
+    transform: translateZ(0);
+    background: #f9f9f9;
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    right: 0;
+    width: 25vw;
+    height: 100vh;
+    transition: width 120ms;
+    padding-top: 75px;
+
+    &.layout-in {
+      position: fixed;
+      top: 0px;
+    }
+
+    &.layout-under {
+      padding-bottom: 0px;
+      top: auto;
+      height: 100vh;
+      bottom: 0;
+    }
+
+    &.video-fixed {
+      padding-top: calc((25vw / 16 * 9) + 75px);
+      transition: padding-top 250ms;
+    }
+  }
+}

@@ -1,17 +1,15 @@
 @media (max-width: 920px) {
   .site-nav {
+    transition: left 120ms;
     position: fixed;
-    right: -240px;
     width: 240px;
-    height: 100vh;
+    left: -240px;
+    height: 65px;
+    top: 75px;
     overflow: scroll;
-    background: $blue;
+    background: #333;
     transition: right 150ms;
     transition-timing-function: cubic-bezier(0, 0.5, 0.5, 0);
-  }
-
-  .show-menu .site-nav {
-    right: 0;
   }
 }
 
@@ -22,10 +20,16 @@
     overflow: hidden;
     top: 75px;
     padding-bottom: 75px;
-    left: 0;
+    left: -240px;
     width: 240px;
     height: 100vh;
-    background: $blue;
+    background: #333;
+    transition: left 250ms;
+  }
+
+  .template-single .site-nav,
+  .template-archive .site-nav {
+    left: 0px;
   }
 
   .site-nav.layout-in {
@@ -48,12 +52,24 @@
   .site-nav-scroll div {
     height: 80px;
     margin: 10px;
-    background: #5599f0;
+    background: #333;
   }
 }
 
-.site-nav a {
-  display: block;
-  padding: 20px;
-  border-bottom: 1px solid rgba(black, 0.05);
+.site-nav:before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.site-nav.loading:before {
+  opacity: 0.2;
 }

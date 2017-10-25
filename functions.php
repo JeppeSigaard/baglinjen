@@ -4,12 +4,31 @@ get_functions_part(array(
   'images',
   'menus',
   'scripts',
+  'post-defaults',
 ));
+
+get_functions_part(array(
+  'author',
+  'sponsor',
+),'post-types');
+
+get_functions_part(array(
+  'siteinfo',
+),'kirki');
 
 get_functions_part(array(
   'images',
   'menus',
+  'url_to_postid',
   'by_url',
+  'content-blocks',
+  'unset-data',
+  'home-slider',
+  'category-color',
+  'category-posts',
+  'post-media',
+  'post-author',
+  'sponsor_meta',
 ),'api');
 
 
@@ -31,3 +50,7 @@ function isSecure() {
     (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
     || $_SERVER['SERVER_PORT'] == 443;
 }
+
+add_filter('rest_url_prefix', function(){
+  return 'api';
+});

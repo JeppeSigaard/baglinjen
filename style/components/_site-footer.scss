@@ -1,6 +1,6 @@
 .site-footer {
   position: relative;
-  height: 400px;
+  z-index: 10;
   background: #333;
   left: 0;
   transition: left 150ms;

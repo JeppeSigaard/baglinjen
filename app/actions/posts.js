@@ -30,3 +30,12 @@ export function fetchPages(args) {
     });
   };
 }
+
+export function fetchSponsors(args) {
+  return (dispatch, getState) => {
+    dispatch({ type: "FETCHING_SPONSORS", data: args });
+    fetch("sponsor", args).then(data => {
+      dispatch({ type: "FETCHED_SPONSORS", data });
+    });
+  };
+}

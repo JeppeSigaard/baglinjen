@@ -1,0 +1,55 @@
+.related-posts {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+
+  .related-posts-header {
+    z-index: 2;
+    position: absolute;
+    height: 65px;
+    width: 100%;
+    border-bottom: 1px solid white;
+    font-family: "DIN", sans-serif;
+    color: white;
+    padding: 15px 20px;
+    text-transform: uppercase;
+
+    &:before {
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      z-index: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    h3 {
+      position: relative;
+      font-size: 125%;
+      margin-bottom: 2px;
+    }
+
+    span {
+      position: relative;
+    }
+  }
+
+  .related-posts-content {
+    z-index: 1;
+    padding-top: 65px;
+    position: relative;
+    height: calc(100% - 65px);
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: content-box;
+    overflow-y: scroll;
+    padding-right: 45px;
+
+    .post-box {
+      border-right: none;
+      box-sizing: border-box;
+    }
+  }
+}

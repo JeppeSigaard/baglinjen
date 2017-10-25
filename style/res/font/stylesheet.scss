@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "DIN";
+  src: url("res/font/DINCondensed-Bold.eot");
+  src: url("res/font/DINCondensed-Bold.eot?#iefix") format("embedded-opentype"),
+    url("res/font/DINCondensed-Bold.woff2") format("woff2"),
+    url("res/font/DINCondensed-Bold.woff") format("woff"),
+    url("res/font/DINCondensed-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Flama Black";
+  src: url("res/font/Flama-Black.eot");
+  src: url("res/font/Flama-Black.eot?#iefix") format("embedded-opentype"),
+    url("res/font/Flama-Black.woff2") format("woff2"),
+    url("res/font/Flama-Black.woff") format("woff"),
+    url("res/font/Flama-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Flama";
+  src: url("res/font/Flama-Light.eot");
+  src: url("res/font/Flama-Light.eot?#iefix") format("embedded-opentype"),
+    url("res/font/Flama-Light.woff2") format("woff2"),
+    url("res/font/Flama-Light.woff") format("woff"),
+    url("res/font/Flama-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}

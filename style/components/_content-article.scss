@@ -1,30 +1,132 @@
 .content-article {
   @extend %font-size;
   @extend %article-font-style;
-  @extend %wp-styles;
-  padding: 20px 20px 40px;
+  padding: 0px 20px 40px;
+  overflow: auto;
 
   @media (min-width: 640px) {
-    padding: 40px 40px 80px;
+    padding: 0px 30px 80px;
   }
 
-  .article-header {
-    border-bottom: 1px solid #333;
-    padding: 30px 0px;
+  h2 {
+    font-family: "Flama Black", sans-serif;
+    font-size: 200%;
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    @media (min-width: 480px) {
+      font-size: 225%;
+    }
+    @media (min-width: 640px) {
+      font-size: 250%;
+    }
+    @media (min-width: 768px) {
+      font-size: 275%;
+    }
+  }
+
+  h3 {
+    font-family: "Flama", sans-serif;
+    font-size: 175%;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-family: "Flama Black", sans-serif;
+    font-size: 125%;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+}
+
+.content-header .article-header {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30px;
+  right: 30px;
+  max-width: 800px;
+  margin: 0;
+}
+.article-header {
+  padding: 20px 10px 0px;
+  //margin-bottom: 20px;
+  position: relative;
+  //max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .article-title {
+    color: white;
+    font-size: 50px;
+    line-height: 80px;
+    font-family: "Flama Black", sans-serif;
+    font-weight: bold;
     margin-bottom: 20px;
   }
 
-  .article-header,
-  p,
-  ul,
-  ol,
-  ul,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    position: relative;
+  .post-meta-icons {
+    .meta-icon {
+      margin: 0px -10px 0px 10px;
+    }
+
+    .meta-icon,
+    .meta-label {
+      height: 40px;
+      min-width: 40px;
+      line-height: 25px;
+      vertical-align: top;
+      padding: 10px;
+      font-family: "DIN", sans-serif;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+      fill: white;
+
+      span,
+      svg {
+        display: block;
+        position: relative;
+        z-index: 1;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(black, 0.3);
+      }
+    }
+    .meta-label:before {
+      background: inherit;
+      left: -10px;
+      right: -10px;
+    }
+  }
+}
+
+.article-byline {
+  display: block;
+  font-family: "DIN", sans-serif;
+  height: 70px;
+  line-height: 100px;
+}
+
+.content-block {
+  margin: 50px 0px;
+  position: relative;
+
+  &.content-block-p,
+  &.content-block-gallery,
+  &.content-block-image,
+  &.content-block-links,
+  &.content-block-h3,
+  &.content-block-h4 {
     max-width: 640px;
     margin-left: auto;
     margin-right: auto;

@@ -1,9 +1,9 @@
-@keyframes fromRight {
+@keyframes fromTop {
   from {
-    right: -134px;
+    top: -500px;
   }
   to {
-    right: 0px;
+    top: 85px;
   }
 }
 
@@ -38,42 +38,55 @@
 }
 
 .video-wrapper.position-relative {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 0px;
   width: 100%;
   padding-bottom: 56.25%;
+  z-index: 2;
 }
 
 .video-wrapper.position-fixed {
   position: fixed;
-  right: -134px;
-  top: 0;
-  height: 75px;
-  width: 134px;
+  overflow: visible;
+  right: 10px;
+  top: 85px;
+  height: 68px;
+  width: 120px;
   padding-bottom: 0;
-  z-index: 100;
-  animation: fromRight 1 forwards 200ms;
-}
+  z-index: 5;
+  animation: fromTop 1 forwards 250ms;
+  box-shadow: 3px 3px 5px rgba(black, 0.3);
 
-.video-wrapper.position-fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100000;
-}
+  @media (min-width: 640px) {
+    height: 135px;
+    width: 240px;
+  }
 
-.test-controls {
-  position: absolute;
-  background: white;
-  padding: 10px;
-  z-index: 1000000;
+  @media (min-width: 1280px) {
+    right: 10px;
+    height: calc((25vw - 20px) / 16 * 9);
+    width: calc(25vw - 20px);
+    animation: fromTop 1 forwards 250ms;
+    box-shadow: none;
+  }
 
-  div {
-    margin: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 10px;
+  &:hover .video-close {
+    opacity: 1;
+  }
+  .video-close {
+    display: block;
+    color: white;
+    position: absolute;
+    font-size: 24px;
+    z-index: 20;
     cursor: pointer;
+    height: 24px;
+    line-height: 24px;
+    width: 24px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 250ms;
   }
 }

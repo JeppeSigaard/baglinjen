@@ -8,7 +8,8 @@ function smamo_rest_by_url($data){
   }
 
   // return a single page, post or cpt
-  $postid = url_to_postid( $url );
+  $postid = smamo_url_to_postid( $url );
+
   if ($postid){
     $post_type = get_post_type($postid);
     $rest = new WP_REST_Posts_Controller($post_type);
@@ -16,6 +17,7 @@ function smamo_rest_by_url($data){
 
     $response->data['template'] = 'single';
     if (get_option( 'page_on_front' ) == $postid){
+
       $response->data['template'] = 'home';
     }
 

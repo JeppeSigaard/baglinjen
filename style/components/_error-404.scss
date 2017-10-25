@@ -1,0 +1,23 @@
+.big-ol-404 {
+  background: #f66;
+  color: white;
+  position: relative;
+  height: 100vh;
+
+  > div {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    right: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 80px;
+    font-weight: bold;
+  }
+
+  p {
+  }
+}

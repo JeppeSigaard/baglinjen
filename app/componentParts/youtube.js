@@ -21,10 +21,15 @@ class Youtube extends React.Component {
       status: 3,
       videoId: null,
       intent: "pause",
-      parent: null
+      parent: null,
+      visualState: "hidden"
     };
   }
 
+  shouldComponentUpdate(props) {
+    if (props.video.visualState !== this.state.visualState) return true;
+    return false;
+  }
   onReady() {
     this.setState({ playerState: "unstarted", status: -1 });
   }
@@ -59,6 +64,7 @@ class Youtube extends React.Component {
     const intent = props.video.intent,
       oldIntent = this.state.intent,
       videoId = props.video.videoId,
+      visualState = props.video.visualState,
       oldVideoId = this.state.videoId;
 
     if (videoId !== oldVideoId) {
@@ -75,8 +81,12 @@ class Youtube extends React.Component {
       this.video.pauseVideo();
     }
 
+    if (intent == "stop" && oldIntent !== "stop") {
+      this.video.stopVideo();
+    }
+
     // Save for next pass-thorugh
-    this.setState({ intent, videoId });
+    this.setState({ intent, videoId, visualState });
   }
 
   componentDidMount() {
@@ -85,12 +95,11 @@ class Youtube extends React.Component {
       videoId,
       playlist: videoId,
       playerVars: {
-        modestbranding: 1,
+        //modestbranding: 1,
         rel: 0,
         showinfo: 0,
-        fs: 0,
-        disablekb: 1,
-        controls: 0,
+        //fs: 0,
+        //disablekb: 1,
         enablejsapi: 1
       }
     });
@@ -103,11 +112,13 @@ class Youtube extends React.Component {
 
   render() {
     let wrapperClass = `video-wrapper state-${this.state.playerState}`;
-    wrapperClass += ` position-${this.props.video.visualState}`;
+    wrapperClass += ` position-${this.state.visualState}`;
 
     return (
       <div className={wrapperClass}>
-        <div className="video-wrapper-overlay" />
+        <div className="video-close" onClick={this.props.destroyVideo}>
+          &times;
+        </div>
         <span id="site-header-video" />
         <div className="video-controls">
           <button>></button>

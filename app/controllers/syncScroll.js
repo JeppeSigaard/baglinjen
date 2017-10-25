@@ -37,9 +37,12 @@ export default function withSyncScroll(
 
       // Set position
       let position;
-
-      if (conTop > 0) {
+      if (conTop > winHeight) {
+        position = "above";
+      } else if (conTop > 0) {
         position = "over";
+      } else if (conTop + conHeight < 0) {
+        position = "below";
       } else if (conTop + conHeight - winHeight < 0) {
         position = "under";
       } else {
@@ -85,8 +88,8 @@ export default function withSyncScroll(
     componentWillUnmount() {
       this.active = false;
       const onscroll = this.onScroll.bind(this);
-      window.addEventListener("scroll", onscroll, this);
-      window.addEventListener("resize", onscroll, this);
+      window.removeEventListener("scroll", onscroll, this);
+      window.removeEventListener("resize", onscroll, this);
     }
 
     render() {

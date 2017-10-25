@@ -84,5 +84,7 @@ function smamo_rest_api_featured_images_get_field( $object, $field_name, $reques
 		$featured_image['media_details']['sizes'] = new stdClass;
 	}
 
+	unset($featured_image['media_details']['image_meta']);
+
 	return apply_filters( 'smamo_rest_api_featured_image', $featured_image, $image_id );
 }
