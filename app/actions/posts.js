@@ -1,10 +1,11 @@
 import { fetch } from "../modules/api";
 
 export function fetchPost(link) {
+  const sanitizedlink = link.split("?")[0];
   return (dispatch, getState) => {
-    dispatch({ type: "FETCHING_POST", data: { link } });
+    dispatch({ type: "FETCHING_POST", data: { link: sanitizedlink } });
     fetch(`by_url/${link}`).then(data => {
-      if (data.link === link) {
+      if (data.link === sanitizedlink) {
         dispatch({ type: "FETCHED_POST", data: data });
       } else {
         dispatch({ type: "FETCHED_POST_FAILED", data: link });

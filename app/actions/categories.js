@@ -18,6 +18,11 @@ export function fetchCategories(args) {
 
 export function fetchCategory(id, args) {
   return (dispatch, getState) => {
+    // Check for preexisting
+    const state = getState();
+    const e = state.categories.find(cat => cat.id === id);
+    if (e !== undefined) dispatch({ type: "FETCHED_CATEGORY", data: e });
+
     dispatch({ type: "FETCHING_CATEGORY", id: id });
     fetch("categories/" + id, args).then(data => {
       dispatch({ type: "FETCHED_CATEGORY", data });

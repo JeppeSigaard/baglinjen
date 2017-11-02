@@ -12,7 +12,6 @@ export default function(state = [], action) {
 
     case "FETCHING_CATEGORY":
       if (state.find(cat => cat.id == action.id) !== undefined) return state;
-
       return [...state, { fetched: false, id: action.id }];
       break;
 

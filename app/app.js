@@ -23,8 +23,13 @@ history.listen((state, action) => {
   if (action !== "PUSH") return;
   setTimeout(() => {
     window.scrollTo(0, 0);
+
     lazyload.scrollEvent();
-  });
+
+    if (typeof ga === "function") {
+      ga("send", "pageview");
+    }
+  }, 20);
 });
 
 const router = routerMiddleware(history);

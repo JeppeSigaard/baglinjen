@@ -22,7 +22,7 @@ class Main extends React.Component {
   setThisPost(props) {
     // Identify this post by URL
     const newPost = props.posts.find(
-      post => post.link === window.location.href
+      post => post.link === window.location.href.split("?")[0]
     );
 
     // undefined causes loading
@@ -45,6 +45,7 @@ class Main extends React.Component {
       newPost.category !== undefined &&
       newPost.category.color !== undefined
     ) {
+      this.props.fetchCategory(newPost.category.id);
       this.props.setThemeColor(newPost.category.color);
     }
 
@@ -59,7 +60,6 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.setThisPost(this.props);
-
     this.props.fetchSponsors();
   }
 
@@ -68,17 +68,16 @@ class Main extends React.Component {
   }
 
   render() {
-    const postReady = this.post !== undefined,
-      hamburger = this.props.hamburger.show,
-      post = postReady
-        ? { ...this.post, color: this.props.color.hex }
-        : this.post,
-      template = postReady ? post.template : "loading",
-      type = postReady ? post.type : "loading",
-      description = this.props.wp.description;
+    const rdy = this.post !== undefined;
+    const hamburger = this.props.hamburger.show;
+    const post = rdy
+      ? { ...this.post, color: this.props.color.hex }
+      : this.post;
+    const template = rdy ? post.template : "loading";
+    const type = rdy ? post.type : "loading";
+    const description = this.props.wp.description;
 
     let classname = `app${hamburger ? " show-menu" : ""}`;
-
     classname += this.loading ? " loading" : "";
     classname += ` type-${type}`;
     classname += ` template-${template}`;
@@ -114,6 +113,7 @@ import { connect } from "react-redux";
 import * as posts from "../actions/posts";
 import * as color from "../actions/color";
 import * as video from "../actions/video";
+import * as categories from "../actions/categories";
 
 const mapStateToProps = state => {
   return {
@@ -127,7 +127,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispachToProps = dispatch => {
-  return bindActionCreators({ ...posts, ...color, ...video }, dispatch);
+  return bindActionCreators(
+    { ...posts, ...color, ...video, ...categories },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispachToProps)(Main);
